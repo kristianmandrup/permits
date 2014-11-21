@@ -1,7 +1,7 @@
 module.exports =
   clean: ->
     @repo!.clean!
-    @applier!.clean!
+    @applier!.clean! if @applier
 
   can-rules: ->
     @repo!.can-rules!

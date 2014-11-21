@@ -1,4 +1,4 @@
 module.exports =
   Activation: require './activation'
-  Registry:   require './registry'
+  Register:   require './register'
   Repo:       require './repo'

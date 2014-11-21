@@ -1,9 +1,7 @@
-requires  = require '../../../../requires'
+require '../../test_setup'
 
-requires.test 'test_setup'
-
-Permit          = requires.lib    'permit'    .Permit
-PermitFactory   = requires.permit 'factory'   .PermitFactory
+Permit          = require '../../../' .Permit
+PermitFactory   = require '../../../' .factory.PermitFactory
 
 class AdminPermit extends Permit
   type: 'admin'

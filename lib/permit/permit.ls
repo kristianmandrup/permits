@@ -6,16 +6,16 @@ permit-mixin    = require './mixin'
 Observable      = mixin.Observable
 
 Activation      = permit-mixin.Activation
-Registry        = permit-mixin.Registry
+Register        = permit-mixin.Register
 Repo            = permit-mixin.Repo
 
-module.exports = class Permit implements Activation, Observable, Registry, Repo, Debugger
+module.exports = class Permit implements Register, Activation, Repo, Observable, Debugger
   # Registers a permit in the PermitRegistry by name
   # @name - String
   # @description -String
 
   (@name, @description = '', @debugging) ->
-    @match-enabled      = false
+    @match-enabled = false
     @activate! if @activate and @auto-activate
     @_register!
     @init!
@@ -25,7 +25,7 @@ module.exports = class Permit implements Activation, Observable, Registry, Repo,
   # pre-compiles static rules that match
   init: ->
     @debug 'permit init'
-    @applier!.apply 'static'
+    @applier!.apply 'static' if @applier
     @
 
   # default match: always true
@@ -36,3 +36,6 @@ module.exports = class Permit implements Activation, Observable, Registry, Repo,
   rules: ->
     {}
 
+  _register: ->
+
+  _unregister: ->
