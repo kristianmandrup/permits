@@ -2,7 +2,7 @@
 (function(){
   var PermitContainer, expect;
   require('../../test_setup');
-  PermitContainer = require('../../../').permit.container.PermitContainer;
+  PermitContainer = require('../../../').container.PermitContainer;
   expect = require('chai').expect;
   describe('PermitContainer', function(){
     var permits, containers;

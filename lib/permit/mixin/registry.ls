@@ -1,3 +1,5 @@
+PermitRegistry = require '../registry' .PermitRegistry
+
 module.exports =
   _register: ->
     @debug 'register permit', @

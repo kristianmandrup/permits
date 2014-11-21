@@ -1,6 +1,6 @@
 require '../../test_setup'
 
-PermitContainer = require '../../../' .permit.container.PermitContainer
+PermitContainer = require '../../../' .container.PermitContainer
 
 expect = require 'chai' .expect
 
