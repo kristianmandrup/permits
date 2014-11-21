@@ -6,10 +6,6 @@ module.exports =
   _unregister: ->
     @registry!.unregister @
 
-  # get a named permit
-  @get = (name) ->
-    @@registry.get name
-
   registry: ->
-    @@registry
+    @_registry
 

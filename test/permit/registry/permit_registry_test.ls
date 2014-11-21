@@ -5,8 +5,20 @@ PermitRegistry  = permit.registry.PermitRegistry
 Permit          = permit.Permit
 create-permit   = require '../../factories' .create-permit
 
+class Repo
+  (@debug) ->
+
+  can-rules: ->
+    {}
+
+  cannot-rules: ->
+    {}
+
 create-registry = (debug = false) ->
   new PermitRegistry debug
+
+create-repo = (debug = false) ->
+  new Repo debug
 
 describe 'PermitRegistry' ->
   permits = {}
@@ -32,7 +44,7 @@ describe 'PermitRegistry' ->
     describe 'create a permit' ->
       before ->
         permits.guest = create-permit.guest!
-        reg := Permit.registry
+        permits.guest.registry := create-registry!
 
       describe 'permits' ->
         specify 'should have guest permit' ->
@@ -45,9 +57,8 @@ describe 'PermitRegistry' ->
 
     context 'guest permit' ->
       before ->
-        reg := Permit.registry
-        reg.clean!
         permits.guest = create-permit.guest!
+        permits.guest.registry := create-registry!
 
       describe 'clean-all' ->
         context 'cleaned permits' ->
@@ -57,13 +68,14 @@ describe 'PermitRegistry' ->
           before-each ->
             reg.clean!
             permits.guest = create-permit.guest!
+            permits.repo  = create-repo!
 
             counters.old  := reg.permit-count!
             permits.old   := reg.permits
             repos.old     := permits.guest.repo!
 
             permits.guest.debug-on!
-            reg.clean!
+            permits.guest._registry = reg
 
           specify 'old repo is a RuleRepo' ->
             repos.old.constructor.should.eql RuleRepo

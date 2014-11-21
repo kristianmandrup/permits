@@ -3,8 +3,8 @@ module.exports =
 
   activate: ->
     @active = true
-    @_register!
+    @register! if @register
 
   deactivate: ->
     @active = false
-    @_unregister!
+    @unregister! if @unregister

@@ -15,17 +15,20 @@ module.exports = class Permit implements Register, Activation, Repo, Observable,
   # @description -String
 
   (@name, @opts) ->
+    @opts ||= {}
     @match-enabled = false
 
     @debugging    = @opts.debug
     @description  = @opts.description || 'no description'
-    @_repo        = @opts.repo
-    @registry     = @opts.registry
+    @_repo         = @opts.repo
+    @_registry     = @opts.registry
+    @validate!
 
     @activate! if @activate and @auto-activate
-    @_register! if @_register
     @init!
     @
+
+  validate: ->
 
   # applies static rules
   # pre-compiles static rules that match
@@ -42,8 +45,5 @@ module.exports = class Permit implements Register, Activation, Repo, Observable,
   rules: ->
     {}
 
-  _register: ->
-    throw Error "Not implemented"
-
-  _unregister: ->
-    throw Error "Not implemented"
+  _not-implemented: (fun) ->
+    throw Error "Not implemented: #{fun}"
