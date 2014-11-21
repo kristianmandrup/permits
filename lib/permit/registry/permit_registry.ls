@@ -1,7 +1,11 @@
-util      = require '../../util'
-obj       = util.object
-Debugger  = util.Debugger
-values    = obj.values
+util        = require '../../util'
+obj         = util.object
+Debugger    = util.Debugger
+values      = obj.values
+
+mixin       = require '../../mixin'
+
+Observable  =  mixin.Observable
 
 extract-name = (thing) ->
   switch typeof! thing
@@ -19,8 +23,6 @@ calc-name = (ctx, name) ->
   unless typeof! name is 'String'
     throw Error "Name of permit must be a String, was: #{name}"
   name
-
-Observable      = require '../mixin' .Observable
 
 module.exports = class PermitRegistry implements Observable, Debugger
   (@debugging) ->

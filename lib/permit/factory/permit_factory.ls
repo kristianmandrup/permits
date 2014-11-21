@@ -8,7 +8,6 @@ module.exports = class PermitFactory implements Debugger
   configure: ->
     # tweak args if invalid base-clazz type
     if typeof! @base-clazz is 'String'
-      console.log 'configure'
       @debugging = @base-obj
       @base-obj = @name
       @name = @base-clazz

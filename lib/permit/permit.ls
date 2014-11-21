@@ -1,15 +1,15 @@
-Debugger        = require '../util' .Debugger
+Debugger        = require '../util'      .Debugger
 
-PermitRegistry  = require './registry'   .PermitRegistry
-PermitMatcher   = require './matcher'    .PermitMatchController
+mixin           = require '../mixin'
+permit-mixin    = require './mixin'
 
-PermitApplier   = require './rule'       .PermitRuleApplier
+Observable      = mixin.Observable
 
-RuleRepo        = require '../rule'      .repo.RuleRepo
-Observable      = require '../mixin'     .Observable
-Activation      = require '../mixin'     .Activation
+Activation      = permit-mixin.Activation
+Registry        = permit-mixin.Registry
+Repo            = permit-mixin.Repo
 
-module.exports = class Permit implements Activation, Observable, Debugger
+module.exports = class Permit implements Activation, Observable, Registry, Repo, Debugger
   # Registers a permit in the PermitRegistry by name
   # @name - String
   # @description -String
@@ -21,48 +21,6 @@ module.exports = class Permit implements Activation, Observable, Debugger
     @init!
     @
 
-  @registry ||= new PermitRegistry
-
-  repo: ->
-    @_repo ||= new RuleRepo @name
-
-  applier: (ar) ->
-    new PermitApplier @, ar, @debugging
-
-  apply-rules: (access-request) ->
-    @applier(access-request).apply 'dynamic'
-
-  permit-matcher: (access-request) ->
-    new PermitMatcher @, access-request, @debugging
-
-  # default empty rules
-  rules: ->
-
-  _register: ->
-    @debug 'register permit', @
-    @registry!.register @
-
-  _unregister: ->
-    @registry!.unregister @
-
-  # get a named permit
-  @get = (name) ->
-    @@registry.get name
-
-  registry: ->
-    @@registry
-
-  @enable-match = ->
-    @match-enabled = true
-
-  @disable-match = ->
-    @match-enabled = false
-
-  # See if this permit should apply (be used) for the given access request
-  # By default @match-enabled is undefined which means false ie. disabled
-  match: (access-request)->
-    @permit-matcher(access-request).match! if @match-enabled
-
   # applies static rules
   # pre-compiles static rules that match
   init: ->
@@ -70,13 +28,11 @@ module.exports = class Permit implements Activation, Observable, Debugger
     @applier!.apply 'static'
     @
 
-  clean: ->
-    @repo!.clean!
-    @applier!.clean!
+  # default match: always true
+  match: (access-request) ->
+    true
 
-  can-rules: ->
-    @repo!.can-rules!
-
-  cannot-rules: ->
-    @repo!.cannot-rules!
+  # default empty rules
+  rules: ->
+    {}
 

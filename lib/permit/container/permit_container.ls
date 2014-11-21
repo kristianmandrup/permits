@@ -2,8 +2,8 @@
 # Common example is per domain, ie: admin, guest, authorized user
 # Could also be by environment, ie: dev, test, prod
 # This can be integrated with PermitFilter as you like
-
-values = require '../../util' .object.values
+util    = require '../../util'
+values  = util.object.values
 
 module.exports = class PermitContainer
   (@name, @desc) ->
