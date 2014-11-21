@@ -1,0 +1,45 @@
+{
+  "name": "permits",
+  "version": "0.6.0",
+  "repository": {
+    "type": "git",
+    "url":  "https://github.com/kristianmandrup/permits.git"
+  },
+  "keywords": [
+    "authorize",
+    "authorizer",
+    "authorization",
+    "approve",
+    "permit",
+    "allow",
+    "can",
+    "cancan",
+    "ability",
+    "rules",
+    "access",
+    "security"
+  ],
+  "dependencies": {
+  },
+  "scripts": {
+    "test":     "make test",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R test -t 5000"
+  },
+  "devDependencies": {
+    "callback-timer":           "x",
+    "sleep":                    "x",
+    "LiveScript":               "x",
+    "browserify":               "x",
+    "es6ify":                   "x",
+    "mocha":                    "x",
+    "chai":                     "x",
+    "util":                     "x",
+    "expect.js":                "x",
+    "should":                   "x",
+    "istanbul":                 "x",
+    "grunt":                    "x",
+    "grunt-mocha-test":         "x",
+    "grunt-istanbul":           "x",
+    "grunt-istanbul-coverage":  "x"
+  }
+}
