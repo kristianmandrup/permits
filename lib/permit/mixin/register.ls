@@ -1,5 +1,3 @@
-PermitRegistry = require '../registry' .PermitRegistry
-
 module.exports =
   _register: ->
     @debug 'register permit', @
@@ -15,5 +13,3 @@ module.exports =
   registry: ->
     @@registry
 
-  # do some clever mixin!
-  @registry ||= new PermitRegistry

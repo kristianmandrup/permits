@@ -1,14 +1,13 @@
-requires  = require '../../../../requires'
+require '../../test_setup'
 
-requires.test 'test_setup'
+User            = require '../../fixtures/user'
+Book            = require '../../fixtures/book'
 
-User      = requires.fix 'user'
-Book      = requires.fix 'book'
-
-Permit          = requires.lib    'permit'    .Permit
-PermitRegistry  = requires.permit 'registry'  .PermitRegistry
-PermitFactory   = requires.permit 'factory'   .PermitFactory
-permit-for      = requires.permit 'factory'   .permitFor
+permit          = require '../../../'
+Permit          = permit.Permit
+PermitRegistry  = permit.registry.PermitRegistry
+PermitFactory   = permit.factory.PermitFactory
+permit-for      = permit.factory.permitFor
 
 expect = require 'chai' .expect
 

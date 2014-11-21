@@ -1,6 +1,4 @@
-requires        = require '../../requires'
-
-permit-for = requires.permit 'factory' .permitFor
+permit-for = require '../../' .factory.permitFor
 
 module.exports =
   setup:

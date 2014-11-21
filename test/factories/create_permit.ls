@@ -1,9 +1,7 @@
-requires  = require '../../requires'
-
-Permit        = requires.lib 'permit'
-permit-for    = requires.permit 'factory' .permit-for
-
-permit-class  = requires.fix  'permit-class'
+permit        = require '../../'
+Permit        = permit.Permit
+permit-for    = permit.factory.permit-for
+permit-class  = require '../fixtures' .permit-class
 
 GuestPermit = permit-class.GuestPermit
 

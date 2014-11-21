@@ -14,10 +14,16 @@ module.exports = class Permit implements Register, Activation, Repo, Observable,
   # @name - String
   # @description -String
 
-  (@name, @description = '', @debugging) ->
+  (@name, @opts) ->
     @match-enabled = false
+
+    @debugging    = @opts.debug
+    @description  = @opts.description || 'no description'
+    @_repo        = @opts.repo
+    @registry     = @opts.registry
+
     @activate! if @activate and @auto-activate
-    @_register!
+    @_register! if @_register
     @init!
     @
 
@@ -37,5 +43,7 @@ module.exports = class Permit implements Register, Activation, Repo, Observable,
     {}
 
   _register: ->
+    throw Error "Not implemented"
 
   _unregister: ->
+    throw Error "Not implemented"

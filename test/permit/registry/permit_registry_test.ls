@@ -1,13 +1,9 @@
-requires  = require '../../../../requires'
+require '../../test_setup'
 
-requires.test 'test_setup'
-
-RuleRepo        = requires.rule 'repo' .RuleRepo
-
-PermitRegistry  = requires.permit 'registry' .PermitRegistry
-Permit          = requires.permit 'permit'
-
-create-permit   = requires.fac  'create-permit'
+permit          = require '../../../'
+PermitRegistry  = permit.registry.PermitRegistry
+Permit          = permit.Permit
+create-permit   = require '../../factories' .create-permit
 
 create-registry = (debug = false) ->
   new PermitRegistry debug

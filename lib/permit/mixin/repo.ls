@@ -8,6 +8,3 @@ module.exports =
 
   cannot-rules: ->
     @repo!.cannot-rules!
-
-  repo: ->
-    @_repo ||= new RuleRepo @name
