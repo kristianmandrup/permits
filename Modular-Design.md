@@ -38,3 +38,10 @@ These are some of the candidates:
   ...
 
 - permit-authorize (core)
+
+## Injection
+
+One of the key features from this major refactor will be going away from explicit dependencies, such as
+Permit creating a RuleRepository as the repo and so on. Instead you will be required to pass in a Repo of
+your choice in the constructor or alternatively set it after creation.
+
